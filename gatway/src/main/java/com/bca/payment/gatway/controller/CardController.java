@@ -36,6 +36,7 @@ public class CardController {
     @PostMapping("")
     @ResponseStatus(HttpStatus.OK)
     public CardModel addCard(@RequestBody CardRequest cardRequest){
+
         CardModel cm = new CardModel();
         cm.setCardNumber(cardRequest.getCardNumber());
         cm.setEmbossCard(cardRequest.getEmbossCard());
@@ -43,7 +44,9 @@ public class CardController {
         cm.setCvv(cardRequest.getCvv());
         cm.setLimitCard(cardRequest.getLimitCard());
         cm.setPrinciple(cardRequest.getPrinciple());
-        cm.setStatus(cardRequest.getStatus());
+        cm.setStatus("normal");
+        cm.setBalance(Double.valueOf(0));
+        cm.setAvailLimitCard(cardRequest.getLimitCard());
         CustomerModel customerModel = customerRepository.findCustomerByCustomerNumber(cardRequest.getCustomerNumber());
         cm.setCustomerModel(customerModel);
         return cardRepository.save(cm);
@@ -52,12 +55,13 @@ public class CardController {
     @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
     public CardModel updateCard(@RequestBody CardRequest cardRequest){
-        CardModel cm = new CardModel();
-        cm.setCardNumber(cardRequest.getCardNumber());
+        CardModel cm = cardRepository.findCardByCardNumber(cardRequest.getCardNumber());
         cm.setEmbossCard(cardRequest.getEmbossCard());
         cm.setExpDate(cardRequest.getExpDate());
         cm.setCvv(cardRequest.getCvv());
         cm.setLimitCard(cardRequest.getLimitCard());
+        Double availLimitNew = cardRequest.getLimitCard() - cm.getBalance();
+        cm.setAvailLimitCard(availLimitNew);
         cm.setPrinciple(cardRequest.getPrinciple());
         cm.setStatus(cardRequest.getStatus());
         CustomerModel customerModel = customerRepository.findCustomerByCustomerNumber(cardRequest.getCustomerNumber());
