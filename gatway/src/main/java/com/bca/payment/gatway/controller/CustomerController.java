@@ -1,6 +1,7 @@
 package com.bca.payment.gatway.controller;
 
 import com.bca.payment.gatway.model.CustomerModel;
+import com.bca.payment.gatway.odp.CustomerRequest;
 import com.bca.payment.gatway.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,14 +31,29 @@ public class CustomerController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public CustomerModel addCust(@RequestBody CustomerModel customerModel){
-        return customerRepository.save(customerModel);
+    public CustomerModel addCust(@RequestBody CustomerRequest cr){
+        CustomerModel cm = new CustomerModel();
+        cm.setName(cr.getName());
+        cm.setPhoneNumber(cr.getPhoneNumber());
+        cm.setEmail(cr.getEmail());
+        cm.setAddress(cr.getAddress());
+        cm.setStatus("normal");
+        cm.setBirthDate(cr.getBirthDate());
+        return customerRepository.save(cm);
     }
 
-    @PutMapping("")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CustomerModel updateCust(@RequestBody CustomerModel customerModel){
-        return customerRepository.save(customerModel);
+    public CustomerModel updateCust(@RequestBody CustomerRequest cr,@PathVariable("id") Integer id){
+        CustomerModel cm = new CustomerModel();
+        cm.setCustomerNumber(id);
+        cm.setName(cr.getName());
+        cm.setPhoneNumber(cr.getPhoneNumber());
+        cm.setEmail(cr.getEmail());
+        cm.setAddress(cr.getAddress());
+        cm.setStatus("normal");
+        cm.setBirthDate(cr.getBirthDate());
+        return customerRepository.save(cm);
     }
 
     @DeleteMapping("/{id}")

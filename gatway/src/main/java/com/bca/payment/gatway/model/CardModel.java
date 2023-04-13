@@ -21,6 +21,10 @@ public class CardModel {
     private Integer cvv;
     @Column(name = "limit_card")
     private Double limitCard;
+    @Column(name = "avail_limit_lard")
+    private Double availLimitCard;
+    @Column(name = "balance")
+    private Double balance;
     @Column(name = "principle")
     private String principle;
     @Column(name = "status")
@@ -105,5 +109,21 @@ public class CardModel {
 
     public void setTransactionModels(List<TransactionModel> transactionModels) {
         this.transactionModels = transactionModels;
+    }
+
+    public Double getAvailLimitCard() {
+        return availLimitCard;
+    }
+
+    public void setAvailLimitCard(Double availLimitCard) {
+        this.availLimitCard = availLimitCard;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 }
