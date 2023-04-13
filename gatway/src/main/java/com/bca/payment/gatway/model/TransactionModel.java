@@ -41,4 +41,83 @@ public class TransactionModel {
     @JsonManagedReference
     private MerchantModel merchantModel;
 
+    public Integer getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(Integer transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getNominalTransaction() {
+        return nominalTransaction;
+    }
+
+    public void setNominalTransaction(Double nominalTransaction) {
+        this.nominalTransaction = nominalTransaction;
+    }
+
+    public Boolean getDebetCredit() {
+        return debetCredit;
+    }
+
+    public void setDebetCredit(Boolean debetCredit) {
+        this.debetCredit = debetCredit;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getApprovalCode() {
+        return approvalCode;
+    }
+
+    public void setApprovalCode(Integer approvalCode) {
+        this.approvalCode = approvalCode;
+    }
+
+    public CardModel getCardModel() {
+        return cardModel;
+    }
+
+    public void setCardModel(CardModel cardModel) {
+        this.cardModel = cardModel;
+    }
+
+    public MerchantModel getMerchantModel() {
+        return merchantModel;
+    }
+
+    public void setMerchantModel(MerchantModel merchantModel) {
+        this.merchantModel = merchantModel;
+    }
 }

@@ -1,39 +1,15 @@
-package com.bca.payment.gatway.model;
+package com.bca.payment.gatway.odp;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-
-import java.util.List;
-
-@Entity
-@Table(name = "card")
-public class CardModel {
-
-    @Id
-    @Column(name = "card_number")
+public class CardRequest {
     private String cardNumber;
-    @Column(name ="emboss_card")
     private String embossCard;
-    @Column(name ="exp_date")
     private String expDate;
-    @Column(name ="cvv")
     private Integer cvv;
-    @Column(name = "limit_card")
     private Double limitCard;
-    @Column(name = "principle")
     private String principle;
-    @Column(name = "status")
     private String status;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_number")
-    @JsonManagedReference
-    private CustomerModel customerModel;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "transactionId" )
-    private List<TransactionModel> transactionModels;
+    private Integer customerNumber;
 
     public String getCardNumber() {
         return cardNumber;
@@ -91,19 +67,11 @@ public class CardModel {
         this.status = status;
     }
 
-    public CustomerModel getCustomerModel() {
-        return customerModel;
+    public Integer getCustomerNumber() {
+        return customerNumber;
     }
 
-    public void setCustomerModel(CustomerModel customerModel) {
-        this.customerModel = customerModel;
-    }
-
-    public List<TransactionModel> getTransactionModels() {
-        return transactionModels;
-    }
-
-    public void setTransactionModels(List<TransactionModel> transactionModels) {
-        this.transactionModels = transactionModels;
+    public void setCustomerNumber(Integer customerNumber) {
+        this.customerNumber = customerNumber;
     }
 }

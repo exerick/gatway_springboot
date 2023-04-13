@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface CustomerRepository extends JpaRepository<CustomerModel,Integer> {
 
-    CustomerModel findCustomerById(Integer customerNumber);
-
-
-    List<CustomerModel> retrieveAll();
+    CustomerModel findCustomerByCustomerNumber(Integer customerNumber);
+    List<CustomerModel> findAll();
 }
